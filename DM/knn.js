@@ -37,7 +37,7 @@ SimpleList.prototype.measureClass = function(){
   var m = 0;
   var n = 0;
   var p = 0;
-  for(var i = 0; i < this.k; i ++){
+  for(var i = 0; i < this.k; i++){
     switch (this.distances.get(scores[i])) {
       case 'Iris-setosa':
         m++;
@@ -52,6 +52,7 @@ SimpleList.prototype.measureClass = function(){
         break;
     }
   }
+  console.log('预测的类标号为：');
   if(m > n && m >p){
     console.log('Iris-setosa');
   }else if(n > m && n > p){
@@ -61,6 +62,7 @@ SimpleList.prototype.measureClass = function(){
   }else{
     console.log('other situation');
   }
+
 }
 
 var lists = [];
@@ -70,18 +72,26 @@ rl.on('line', (line) => {
   lists.push(list);
 })
 console.log('compute');
-var testSimple = [5.9, 3.0, 5.1, 1.8];
-var testSimple2 = [6.1, 2.8, 4.1, 7.2];
+var testSimple = [5.9, 3.0, 5.1, 1.8]; // 0 1 2 3
+var testSimple2 = [4.3,3.0,1.1,0.1]; // 类标号为第一类
 var testSimple3 = [4.6, 3.4, 1.4, 0.3];
 rl.on('end', ()=>{
   var set = new SimpleList(5);
   for(var item of lists){
     set.add(item);
   }
-  set.measureDistences(testSimple3);
+  set.measureDistences(testSimple2);
   set.measureClass();
 
 })
+/**
+ * 编写KNN的流程：
+ * 数据集：鸢尾花数据集(150项)
+ * 1、从文件中读取数据集
+ * 2、处理数据集,存入到simples数组中
+ * 3、计算到测试集的距离并且存入到distances中，distances是一个字典，键为距离，值为测试项的类标号
+ * 4、根据K来计算最近邻的K个测试数据的类标号计数，并且根据计数来预测测试项的类标号
+ */
 // 5.9,3.0,5.1,1.8,Iris-virginica
 // 6.7,3.0,5.0,1.7,Iris-versicolor
 

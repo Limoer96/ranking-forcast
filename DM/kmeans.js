@@ -17,7 +17,9 @@ rl.on('end', ()=>{
     [points,c] = cluster(points);
     [points, new_c] = cluster(points);
     if(measureStopCondition(c, new_c)){
-      console.log(new_c);
+      console.log(`属于第一类个数的${new_c[0].length}`);
+      console.log(`属于第二类个数的${new_c[1].length}`);
+      console.log(`属于第三类个数的${new_c[2].length}`);      
       break;
     }
     console.log(`已经进行了${++n}迭代！`);
@@ -112,7 +114,15 @@ function measureStopCondition(c, new_c){
   }
   return true;
 }
-
+/**
+ * K-means算法的基本步骤：
+ * 数据集：鸢尾花150项，去类标号
+ * 1、读取数据集
+ * 2、随机选取中心点
+ * 3、计算到中心点的距离，并且根据计算结果进行初次聚类
+ * 4、重新计算中心点
+ * 4、设置迭代终止条件
+ */
 
 
 
