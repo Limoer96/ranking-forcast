@@ -1,6 +1,10 @@
 # ranking-forcast
 slope one算法的简单实现，用于预估用户电影评分。
-其中util.js是实现程序，datas中放置数据集
+其中util.js是实现程序，datas中放置数据集。
+
+新增：为了提升运行速度，我把中间结果进行了固化，也就是存入了文件。
+并且为了让结果更容易展示出来，这里使用了canvas进行了简单的绘制。
+
 
 # 运行
 
@@ -9,6 +13,10 @@ git clone git@github.com:xiaomoer/ranking-forcast.git
 cnpm install 
 
 node util.js
+
+node server.js 打开服务器
+
+在浏览器中打开index.html即可看到绘制的图像。
 
 # 新增一个分类算法和聚类算法
 
